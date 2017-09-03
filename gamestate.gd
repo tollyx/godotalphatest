@@ -29,7 +29,6 @@ func _ready():
 # Callback from SceneTree
 func _player_connected(id):
 	print("Player ", id, " connected.")
-	pass
 
 # Callback from SceneTree
 func _player_disconnected(id):
@@ -58,21 +57,11 @@ func _connected_fail():
 	get_tree().set_network_peer(null) # Remove peer
 	emit_signal("connection_failed")
 
-func create_player(id, name):
-	print("Creating player ", id, " with name ", name, "...")
-	var player = player_scene.instance()
-	player.translation = Vector3(0,10,0)
-	set_name(str(id))
-	get_node("/root/World/Players").add_child(player)
-	player.set_player(id)
-	print("Created player ", id, " with name ", name)
-
 func host_game(name):
 	player_name = name
 	var host = NetworkedMultiplayerENet.new()
 	host.create_server(DEFAULT_PORT, MAX_PEERS)
 	get_tree().set_network_peer(host)
-	
 	create_player(get_tree().get_network_unique_id(), name)
 
 func join_game(ip, name):
@@ -90,9 +79,21 @@ func end_game():
 	get_node("/root/World/Camera").set_camera_target(null)
 	emit_signal("game_ended")
 
+func create_player(id, name):
+	print("Creating player ", id, " with name ", name, "...")
+	var player = player_scene.instance()
+	player.translation = Vector3(0,10,0)
+	player.set_name(str(id))
+	player.set_player(id)
+	get_node("/root/World/Players").add_child(player)
+	if player.is_network_master():
+		player.grab_camera()
+	print("Created player ", id, " with name ", name)
+
 remote func register_player(id, name):
-	print("Player ", id, " with name ", name, " was registered.")
-	create_player(id, name)
+	if not players.has(id):
+		print("Player ", id, " with name ", name, " was registered.")
+		create_player(id, name)
 
 	if (get_tree().is_network_server()):
 		# If we are the server, let everyone know about the new player
@@ -104,13 +105,12 @@ remote func register_player(id, name):
 	players[id] = name
 
 remote func unregister_player(id):
-	var name = players[id]
-	players.erase(id)
-	
-	var nodes = get_tree().get_nodes_in_group("players")
-	for n in nodes:
-		if n.get_network_master() == id:
-			n.queue_free()
-			break
-	
-
+	if players.has(id):
+		var name = players[id]
+		players.erase(id)
+		
+		var nodes = get_tree().get_nodes_in_group("players")
+		for n in nodes:
+			if n.get_network_master() == id:
+				n.queue_free()
+				break

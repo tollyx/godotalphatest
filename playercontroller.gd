@@ -19,10 +19,11 @@ func get_camera_target_node():
 	return get_node("CameraAxis/CameraTarget")
 
 func set_player(playerId):
-	set_network_master(playerId, true)
-	if is_network_master():
-		get_node("/root/World/Camera").set_camera_target(get_camera_target_node())
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	set_network_master(playerId, false)
+
+func grab_camera():
+	get_node("/root/World/Camera").set_camera_target(get_camera_target_node())
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _ready():# Called every time the node is added to the scene.
 	add_to_group("players")
@@ -47,11 +48,13 @@ func _fixed_process(delta):
 		
 		velocity.x = 0
 		velocity.z = 0
-		
 		velocity += dir * MAX_SPEED * delta
 		
-		if(is_on_floor() and Input.is_key_pressed(KEY_SPACE)):
-			velocity.y = JUMP_SPEED
+		if is_on_floor():
+			if(Input.is_key_pressed(KEY_SPACE)):
+				velocity.y = JUMP_SPEED
+			else:
+				velocity.y = 0
 		else:
 			velocity.y += -gravity * delta
 		
