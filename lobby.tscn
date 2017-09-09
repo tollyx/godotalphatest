@@ -4,8 +4,10 @@
 
 [node name="lobby" type="Control"]
 
-anchor_right = 1
-anchor_bottom = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -16,40 +18,27 @@ _sections_unfolded = [ "Anchor", "Margin" ]
 
 [node name="connect" type="Panel" parent="."]
 
-anchor_left = 2
-anchor_top = 2
-anchor_right = 2
-anchor_bottom = 2
-margin_left = 75.0
-margin_top = 110.0
-margin_right = -75.0
-margin_bottom = -60.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 80.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Hint", "Margin", "Theme" ]
-
-[node name="ip_label" type="Label" parent="connect"]
-
-margin_left = 11.0
-margin_top = 61.0
-margin_right = 41.0
-margin_bottom = 75.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "IP:"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "Margin" ]
+_sections_unfolded = [ "Anchor", "Hint", "Margin", "Theme" ]
 
 [node name="name_label" type="Label" parent="connect"]
 
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 12.0
 margin_top = 10.0
 margin_right = 42.0
@@ -65,32 +54,15 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "Margin" ]
 
-[node name="ip" type="LineEdit" parent="connect"]
-
-anchor_right = 1
-margin_left = 9.0
-margin_top = 77.0
-margin_right = 11.0
-margin_bottom = 101.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-text = "127.0.0.1"
-expand_to_len = false
-focus_mode = 2
-placeholder_alpha = 0.6
-caret_blink = false
-caret_blink_speed = 0.65
-_sections_unfolded = [ "Anchor", "Margin" ]
-
 [node name="name" type="LineEdit" parent="connect"]
 
-anchor_right = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
 margin_left = 10.0
 margin_top = 26.0
-margin_right = 10.0
+margin_right = -10.0
 margin_bottom = 50.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -105,33 +77,60 @@ caret_blink = false
 caret_blink_speed = 0.65
 _sections_unfolded = [ "Anchor", "Margin" ]
 
-[node name="host" type="Button" parent="connect"]
+[node name="ip_label" type="Label" parent="connect"]
 
-anchor_right = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 11.0
+margin_top = 61.0
+margin_right = 41.0
+margin_bottom = 75.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "IP:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "Margin" ]
+
+[node name="ip" type="LineEdit" parent="connect"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
 margin_left = 9.0
-margin_top = 138.0
-margin_right = 11.0
-margin_bottom = 158.0
+margin_top = 77.0
+margin_right = -10.0
+margin_bottom = 101.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Host"
-flat = false
+text = "127.0.0.1"
+expand_to_len = false
+focus_mode = 2
+placeholder_alpha = 0.6
+caret_blink = false
+caret_blink_speed = 0.65
 _sections_unfolded = [ "Anchor", "Margin" ]
 
 [node name="join" type="Button" parent="connect"]
 
-anchor_right = 1
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 margin_left = 9.0
-margin_top = 111.0
-margin_right = 11.0
-margin_bottom = 131.0
+margin_top = -55.0
+margin_right = -10.0
+margin_bottom = -45.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -145,27 +144,53 @@ text = "Join"
 flat = false
 _sections_unfolded = [ "Anchor", "Margin", "Rect" ]
 
-[node name="connecting" type="Panel" parent="."]
+[node name="host" type="Button" parent="connect"]
 
-visible = false
-anchor_left = 2
-anchor_top = 2
-anchor_right = 2
-anchor_bottom = 2
-margin_left = 50.0
-margin_top = 15.0
-margin_right = -50.0
-margin_bottom = -15.0
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -30.0
+margin_right = -10.0
+margin_bottom = -20.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Host"
+flat = false
+_sections_unfolded = [ "Anchor", "Margin" ]
+
+[node name="connecting" type="Panel" parent="."]
+
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -10.0
+margin_right = 50.0
+margin_bottom = 10.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Anchor", "Margin" ]
 
 [node name="connecting_label" type="Label" parent="connecting"]
 
-anchor_right = 1
-anchor_bottom = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -182,6 +207,10 @@ _sections_unfolded = [ "Anchor", "Margin" ]
 [node name="error" type="AcceptDialog" parent="."]
 
 visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_right = 55.0
 margin_bottom = 58.0
 rect_pivot_offset = Vector2( 0, 0 )
@@ -194,8 +223,8 @@ window_title = "Alert!"
 resizable = false
 dialog_hide_on_ok = true
 
-[connection signal="pressed" from="connect/host" to="." method="_on_host_pressed"]
-
 [connection signal="pressed" from="connect/join" to="." method="_on_join_pressed"]
+
+[connection signal="pressed" from="connect/host" to="." method="_on_host_pressed"]
 
 

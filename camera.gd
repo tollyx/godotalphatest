@@ -18,6 +18,6 @@ func _ready():
 	#set_camera_target(get_node("../Player").get_camera_target_node())
 	pass
 
-func _fixed_process(delta):
+func _process(delta):
 	if cameratarget != null:
 		global_transform = cameratarget.global_transform

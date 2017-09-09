@@ -1,11 +1,20 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+; 
+; Format: 
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
 config_version=3
 
 [application]
 
 config/name="alphatest"
 run/main_scene="res://World.tscn"
+config/use_shared_user_dir=false
 boot_splash/fullsize=false
-config/icon="res://icon.png"
+config/icon="res://snubben128t.png"
 
 [autoload]
 
@@ -15,6 +24,10 @@ gamestate="*res://gamestate.gd"
 
 window/size/width=1280
 window/size/height=720
+
+[gdnative]
+
+singletons=[  ]
 
 [input]
 

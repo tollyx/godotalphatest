@@ -7,6 +7,8 @@ const gravity = 92
 
 const MAX_SPEED = 800
 const JUMP_SPEED = 25
+const JUMP_MARGIN = 0.25
+const JUMP_AMOUNT = 2
 const MAX_SLOPE_ANGLE = 30
 const MOUSE_SENSIVITY = 0.05
 
@@ -14,6 +16,9 @@ slave var slave_vel = Vector3()
 slave var slave_pos = Vector3()
 slave var slave_rot = Vector3()
 var velocity = Vector3()
+var anim
+var airtime = 0
+var jumps = 0
 
 func get_camera_target_node():
 	return get_node("CameraAxis/CameraTarget")
@@ -27,6 +32,7 @@ func grab_camera():
 
 func _ready():# Called every time the node is added to the scene.
 	add_to_group("players")
+	anim = get_node("AnimationPlayer")
 	slave_pos = translation
 	slave_rot = rotation
 
@@ -51,15 +57,18 @@ func _fixed_process(delta):
 		velocity += dir * MAX_SPEED * delta
 		
 		if is_on_floor():
-			if(Input.is_key_pressed(KEY_SPACE)):
-				velocity.y = JUMP_SPEED
-			else:
-				velocity.y = 0
+			airtime = 0
+			jumps = 0
 		else:
+			airtime += delta
 			velocity.y += -gravity * delta
 		
-		rset_unreliable("slave_vel", velocity)
-		rset_unreliable("slave_pos", translation)
+		if velocity != slave_vel:
+			rset_unreliable("slave_vel", velocity)
+		if translation != slave_pos:
+			rset_unreliable("slave_pos", translation)
+		if rotation != slave_rot:
+			rset_unreliable("slave_rot", rotation)
 	else:
 		velocity = slave_vel
 		translation = slave_pos
@@ -71,6 +80,11 @@ func _fixed_process(delta):
 		slave_vel = velocity
 		slave_pos = translation
 	
+	
+sync func attack():
+	anim.play("attack")
+	anim.queue("idle")
+
 func _input(event):
 	if is_network_master():
 		if(event is InputEventMouseMotion):
@@ -82,4 +96,18 @@ func _input(event):
 			var rot = axis.get_rotation_deg()
 			rot.x = clamp(rot.x, -80, 30)
 			axis.rotation_deg = rot
-			rset_unreliable("slave_rot", rotation)
+			
+		elif(event is InputEventKey):
+			if event.pressed and event.scancode == KEY_R:
+				translation = Vector3(0, 10, 0)
+			if event.pressed and event.scancode == KEY_SPACE:
+				if airtime > JUMP_MARGIN and jumps == 0:
+					jumps += 1
+				
+				if jumps < JUMP_AMOUNT:
+					velocity.y = JUMP_SPEED
+					jumps += 1
+				rset_unreliable("slave_vel", velocity)
+		elif(event is InputEventMouseButton):
+			if event.pressed and event.button_index == 1 and anim.get_current_animation() == "idle":
+				rpc("attack")
