@@ -6,10 +6,7 @@ signal connection_succeeded()
 signal game_ended()
 signal game_error(what)
 
-
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+var slash_scene
 
 const DEFAULT_PORT = 27015
 const MAX_PEERS = 4
@@ -19,6 +16,7 @@ var player_name = "Playa"
 var players = {}
 
 func _ready():
+	slash_scene = load("res://models/slash.tscn")
 	player_scene = load("res://Player.tscn")
 	get_tree().connect("network_peer_connected", self, "_player_connected")
 	get_tree().connect("network_peer_disconnected", self,"_player_disconnected")
@@ -82,7 +80,7 @@ func end_game():
 func create_player(id, name):
 	print("Creating player ", id, " with name ", name, "...")
 	var player = player_scene.instance()
-	player.translation = Vector3(0,10,0)
+	player.set_position(Vector3(0,10,0))
 	player.set_name(str(id))
 	player.set_player(id)
 	get_node("/root/World/Players").add_child(player)

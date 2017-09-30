@@ -2,90 +2,29 @@
 
 [node name="Settings" type="Panel"]
 
-anchor_left = 2
-anchor_top = 2
-anchor_right = 2
-anchor_bottom = 2
-margin_left = 100.0
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -200.0
 margin_top = 100.0
-margin_right = -100.0
+margin_right = 200.0
 margin_bottom = -100.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-
-anchor_right = 1
-anchor_bottom = 1
-margin_left = 5.0
-margin_top = 20.0
-margin_right = 5.0
-margin_bottom = 5.0
-rect_pivot_offset = Vector2( 0, 0 )
-mouse_filter = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-scroll_horizontal = false
-scroll_vertical = true
 _sections_unfolded = [ "Anchor", "Margin", "Rect" ]
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-
-margin_right = 190.0
-margin_bottom = 74.0
-rect_min_size = Vector2( 190, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
-
-[node name="fullscreen" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
-
-margin_right = 190.0
-margin_bottom = 23.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-disabled = true
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Fullscreen"
-flat = false
-align = 0
-
-[node name="vsync" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
-
-margin_top = 27.0
-margin_right = 190.0
-margin_bottom = 50.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-disabled = true
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Vsync"
-flat = false
-align = 0
 
 [node name="Label" type="Label" parent="."]
 
-anchor_right = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
 margin_top = 5.0
+margin_bottom = 19.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -98,5 +37,253 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "Margin" ]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 22.0
+margin_right = -5.0
+margin_bottom = -36.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+scroll_horizontal = false
+scroll_vertical = true
+_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 390.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 390, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
+
+[node name="fullscreen" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 390.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Fullscreen"
+flat = false
+align = 0
+
+[node name="vsync" type="CheckBox" parent="ScrollContainer/VBoxContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 27.0
+margin_right = 390.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Vsync"
+flat = false
+align = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="Container" type="Container" parent="ScrollContainer/VBoxContainer"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 54.0
+margin_right = 390.0
+margin_bottom = 77.0
+rect_min_size = Vector2( 0, 23 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Container"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_right = 390.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Mouse Sensivity"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "Margin", "Rect" ]
+
+[node name="HSlider" type="HSlider" parent="ScrollContainer/VBoxContainer/Container/Label"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 120.0
+margin_right = -40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+min_value = 0.0
+max_value = 10.0
+step = 0.001
+page = 0.0
+value = 1.0
+exp_edit = false
+rounded = false
+editable = true
+tick_count = 0
+ticks_on_borders = true
+focus_mode = 2
+_sections_unfolded = [ "Anchor", "Margin" ]
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer/Container/Label"]
+
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -30.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "1"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "Margin" ]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -30.0
+margin_bottom = -5.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+_sections_unfolded = [ "Anchor", "Margin" ]
+
+[node name="Ok" type="Button" parent="HBoxContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 98.0
+margin_right = 163.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 65, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Ok"
+flat = false
+_sections_unfolded = [ "Rect" ]
+
+[node name="Reset to Default" type="Button" parent="HBoxContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 167.0
+margin_right = 232.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 65, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Defaults"
+flat = false
+_sections_unfolded = [ "Rect" ]
+
+[node name="Cancel" type="Button" parent="HBoxContainer"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 236.0
+margin_right = 301.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 65, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Cancel"
+flat = false
+_sections_unfolded = [ "Rect" ]
 
 
