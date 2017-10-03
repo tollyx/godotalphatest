@@ -18,7 +18,7 @@ func _ready():
 
 func hit(body):
 	if is_network_master() and active_time > 0:
-		if body is KinematicBody and body != owner:
+		if body != owner and body.is_in_group("players"):
 			body.get_parent().rpc("hit", velocity)
 			print("WHACK!")
 

@@ -4,7 +4,7 @@
 [ext_resource path="res://models/Head.tscn" type="PackedScene" id=2]
 [ext_resource path="res://swordmat.tres" type="Material" id=3]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 
 resource_name = "attack_l"
 length = 0.1
@@ -22,7 +22,7 @@ tracks/0/keys = {
 "values": [ Transform( -0.622913, -0.730168, -0.280773, 0.779506, -0.609597, -0.144088, -0.0659501, -0.308618, 0.948897, -1.05352, -0.44518, 0.568581 ), Transform( 0.52304, 0.020426, -0.852063, -0.00146645, -0.99969, -0.0248652, -0.852307, 0.014255, -0.522848, -1.43353, -0.445179, -0.698381 ), Transform( 0.999434, -0.0210485, 0.0262325, -0.020856, -0.999753, -0.00759148, 0.0263859, 0.00704008, -0.999627, -0.122076, -0.44518, -1.5814 ), Transform( 0.672095, -0.00236243, 0.740461, 0.00253116, -0.999981, -0.0054879, 0.74046, 0.00556261, -0.672077, 1.2778, -0.445179, -1.07995 ), Transform( -0.675305, 0.0374913, 0.736585, -0.411542, -0.847926, -0.334146, 0.612042, -0.528786, 0.588039, 1.44455, -0.44518, 0.052273 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 
 resource_name = "attack_r"
 length = 0.1
@@ -40,7 +40,7 @@ tracks/0/keys = {
 "values": [ Transform( -0.622913, 0.730168, 0.280773, -0.779506, -0.609597, -0.144088, 0.0659502, -0.308618, 0.948897, 1.05352, -0.44518, 0.568581 ), Transform( 0.52304, -0.020426, 0.852063, 0.00146647, -0.999689, -0.0248651, 0.852306, 0.014255, -0.522848, 1.43353, -0.445179, -0.698381 ), Transform( 0.999434, -0.0210485, 0.0262325, -0.020856, -0.999753, -0.00759148, 0.0263859, 0.00704008, -0.999627, -0.122076, -0.44518, -1.5814 ), Transform( 0.672095, 0.00236243, -0.740461, -0.00253116, -0.999981, -0.00548789, -0.74046, 0.00556261, -0.672077, -1.2778, -0.445179, -1.07995 ), Transform( -0.675305, -0.0374914, -0.736585, 0.411542, -0.847926, -0.334145, -0.612042, -0.528786, 0.588039, -1.44455, -0.44518, 0.0522727 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=3]
 
 resource_name = "idle_l"
 length = 0.1
@@ -58,7 +58,7 @@ tracks/0/keys = {
 "values": [ Transform( -0.622913, -0.730168, -0.280773, 0.779506, -0.609597, -0.144088, -0.0659501, -0.308618, 0.948897, -1.05352, -0.44518, 0.568581 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 
 resource_name = "idle_r"
 length = 0.1
@@ -76,19 +76,19 @@ tracks/0/keys = {
 "values": [ Transform( -0.622913, 0.730168, 0.280773, -0.779506, -0.609597, -0.144088, 0.0659502, -0.308618, 0.948897, 1.05352, -0.44518, 0.568581 ) ]
 }
 
-[sub_resource type="CapsuleShape" id=8]
+[sub_resource type="CapsuleShape" id=5]
 
 radius = 0.918299
 height = 1.85149
 
-[sub_resource type="CapsuleMesh" id=1]
+[sub_resource type="CapsuleMesh" id=6]
 
 radius = 1.0
 mid_height = 1.0
 radial_segments = 64
 rings = 8
 
-[sub_resource type="SpatialMaterial" id=2]
+[sub_resource type="SpatialMaterial" id=7]
 
 flags_transparent = false
 flags_unshaded = false
@@ -136,7 +136,7 @@ uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
 _sections_unfolded = [ "Metallic", "Roughness" ]
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="CubeMesh" id=8]
 
 material = ExtResource( 3 )
 size = Vector3( 2, 2, 2 )
@@ -144,7 +144,9 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[node name="Player" type="Node"]
+[node name="Player" type="Node" groups=[
+"players",
+]]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "collision" ]
@@ -154,17 +156,19 @@ _sections_unfolded = [ "Transform", "collision" ]
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 root_node = NodePath("..")
-anims/attack_l = SubResource( 4 )
-anims/attack_r = SubResource( 5 )
-anims/idle_l = SubResource( 6 )
-anims/idle_r = SubResource( 7 )
+anims/attack_l = SubResource( 1 )
+anims/attack_r = SubResource( 2 )
+anims/idle_l = SubResource( 3 )
+anims/idle_r = SubResource( 4 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = "idle_r"
 _sections_unfolded = [ "Playback Options", "playback" ]
 
-[node name="Body" type="KinematicBody" parent="."]
+[node name="Body" type="KinematicBody" parent="." groups=[
+"players",
+]]
 
 input_ray_pickable = true
 input_capture_on_drag = false
@@ -176,7 +180,7 @@ _sections_unfolded = [ "Collision", "collision" ]
 [node name="CollisionShape" type="CollisionShape" parent="Body"]
 
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.0350174, 0 )
-shape = SubResource( 8 )
+shape = SubResource( 5 )
 disabled = false
 _sections_unfolded = [ "Transform", "Visibility" ]
 
@@ -235,9 +239,9 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 1 )
+mesh = SubResource( 6 )
 skeleton = NodePath("..")
-material/0 = SubResource( 2 )
+material/0 = SubResource( 7 )
 _sections_unfolded = [ "Transform", "material" ]
 
 [node name="Sword" type="Spatial" parent="Model"]
@@ -258,7 +262,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 8 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
@@ -275,7 +279,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 8 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]
@@ -292,7 +296,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 3 )
+mesh = SubResource( 8 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform" ]

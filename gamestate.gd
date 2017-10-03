@@ -73,7 +73,6 @@ func end_game():
 	for n in nodes:
 		n.queue_free()
 		break
-	
 	get_node("/root/World/Camera").set_camera_target(null)
 	emit_signal("game_ended")
 

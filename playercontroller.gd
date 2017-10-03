@@ -27,7 +27,6 @@ var is_hit = false
 var dashing = 0.0
 
 func _ready():# Called every time the node is added to the scene.
-	add_to_group("players")
 	anim = $AnimationPlayer
 
 func get_camera_target_node():
